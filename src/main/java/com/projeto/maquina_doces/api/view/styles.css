@@ -1,0 +1,128 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.vending-machine {
+    width: 300px;
+    background-color: #0c3d79;
+    border: 10px solid #0a1628;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.display {
+    background-color: #fff;
+    border: 2px solid #999;
+    padding: 10px;
+    text-align: center;
+}
+
+.slot {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.slot img {
+    width: 150px;
+    height: 150px;
+    border-radius: 40px;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 10px;
+    width: 70px; /* Tamanho ajustado */
+    height: 70px; /* Tamanho ajustado */
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+button img {
+    width: 100%; /* Isso fará a imagem ocupar todo o botão */
+    height: 100%; /* Isso também ajuda a imagem a preencher o botão, ajustando-se ao novo tamanho */
+    display: block;
+    border-radius: 15px; /* Mantém as bordas arredondadas */
+}
+
+.image-button img {
+    display: block;
+    width: 15px; /* Ou a largura que você preferir */
+    height: 15px; /* Ou a altura que você preferir */
+    border-radius: 15px; /* Bordas arredondadas */
+}
+
+.slot-machine {
+    position: relative;
+    width: 10x; /* Ajuste conforme necessário */
+    height: 20px; /* Ajuste conforme necessário */
+    background: #333; /* Cor de fundo da máquina */
+    border-radius:10px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.coin-slot {
+    width: 10px; /* Largura da fenda */
+    height: 5px; /* Altura da fenda */
+    background-color: #666; /* Cor da fenda */
+    position: absolute;
+    top: 20px; /* Posição superior */
+    left: calc(-30% - 25px); /* Posição horizontal (centralizada) */
+    z-index: 1; /* Garante que a fenda fique acima dos outros elementos */
+}
+
+.lever-container {
+    position: absolute;
+    right: -30px; /* Ajusta a posição da alavanca para fora da máquina */
+    bottom: 0;
+    width: 20px;
+    height: 100px;
+    background: #777; /* Cor da alavanca */
+    border-radius: 10px / 2px;
+}
+
+.lever {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 80px;
+    background: #999; /* Cor da alavanca */
+    border-radius: 10px / 2px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.knob {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 20px;
+    background: #bbb; /* Cor do puxador da alavanca */
+    border-radius: 5px;
+}
+
+/* Animação da alavanca sendo puxada */
+.lever:active {
+    transform: translateX(-50%) rotate(-45deg); /* Simula a ação de puxar */
+}
+
+/* Estilos para a div com o ID meuID */
+#meuID {
+    text-align: center; /* Centraliza horizontalmente o conteúdo */
+}
+
+#meuID .element-to-center {
+    margin: 0 auto; /* Centraliza horizontalmente o elemento */
+    display: block; /* Garante que o elemento seja exibido como bloco */
+}

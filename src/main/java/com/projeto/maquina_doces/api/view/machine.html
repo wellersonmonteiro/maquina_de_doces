@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Máquina de Doces</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .vending-machine, .slot-machine, .coin-slot {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .coin-slot {
+            background-color: yellow;
+            width: 80px;
+            height: 200px;
+            border: 2px solid black;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .coin-slot:before {
+            content: "";
+            position: absolute;
+            width: 80%;
+            height: 3px;
+            background-color: black;
+            bottom: 3px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+<div class="vending-machine">
+    <div class="display">
+        <h2>Selecione um doce</h2>
+    </div>
+    <div id="doces">
+        <button onclick="selecionarDoce(1)">
+            <img src="/images/candy1.jpeg" alt="Doce 1">
+        </button>
+        <button onclick="selecionarDoce(2)">
+            <img src="/images/candy2.jpeg" alt="Doce 2">
+        </button>
+        <button onclick="selecionarDoce(3)">
+            <img src="/images/candy3.jpeg" alt="Doce 3">
+        </button>
+    </div>
+    <div class="actions">
+        <button onclick="sairDoces()">Sair Doces</button>
+        <button onclick="obterTroco()">Obter Troco</button>
+    </div>
+</div>
+
+<div class="slot-machine">
+    <div class="lever-container">
+        <div class="lever" onclick="leverPull()">
+            <div class="knob"></div>
+        </div>
+    </div>
+</div>
+
+<div class="coin-slot">
+    <button onclick="adicionarMoeda(0.25)">Adicionar R$ 0.25</button>
+    <button onclick="adicionarMoeda(0.5)">Adicionar R$ 0.50</button>
+    <button onclick="adicionarMoeda(1)">Adicionar R$ 1.00</button>
+</div>
+
+<script
+    src="script.js">
+</script>
+</body>
+</html>

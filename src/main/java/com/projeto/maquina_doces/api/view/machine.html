@@ -6,30 +6,6 @@
     <title>Máquina de Doces</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .vending-machine, .slot-machine, .coin-slot {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .coin-slot {
-            background-color: yellow;
-            width: 80px;
-            height: 200px;
-            border: 2px solid black;
-            border-radius: 10px;
-            position: relative;
-        }
-
-        .coin-slot:before {
-            content: "";
-            position: absolute;
-            width: 80%;
-            height: 3px;
-            background-color: black;
-            bottom: 3px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
     </style>
 </head>
 <body>
@@ -63,9 +39,9 @@
 </div>
 
 <div class="coin-slot">
-    <button onclick="adicionarMoeda(0.25)">Adicionar R$ 0.25</button>
-    <button onclick="adicionarMoeda(0.5)">Adicionar R$ 0.50</button>
-    <button onclick="adicionarMoeda(1)">Adicionar R$ 1.00</button>
+    <button onclick="adicionarMoeda(1.00); ValidarSaldo(1.00)">Adicionar R$ 1.00</button>
+    <button onclick="adicionarMoeda(2.00); ValidarSaldo(2.00)">Adicionar R$ 2.00</button>
+    <button onclick="adicionarMoeda(5.00); ValidarSaldo(5.00)">Adicionar R$ 5.00</button>
 </div>
 
 <script

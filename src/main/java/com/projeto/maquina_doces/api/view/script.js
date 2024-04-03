@@ -1,34 +1,61 @@
-var saldo = 0;
+let saldo = 0;
+let doceValor = 0;
+let mensagem = "";
+let isAdd = false;
+let isBuy = false;
+let troco = saldo - doceValor;
 
 function selecionarDoce(numeroDoce) {
-    var mensagem = "";
-
-    switch(numeroDoce) {
-        case 1:
-            mensagem = "Você selecionou o Doce 1";
-            break;
-        case 2:
-            mensagem = "Você selecionou o Doce 2";
-            break;
-        case 3:
-            mensagem = "Você selecionou o Doce 3";
-            break;
-        default:
-            mensagem = "Doce inválido";
+    mensagem = "";
+    if (!isAdd) {
+        switch (numeroDoce) {
+            case 1:
+                mensagem = " Doce A. Preço = 6,00R$";
+                doceValor = 6.00;
+                isAdd = true;
+                break;
+            case 2:
+                mensagem = "Doce B. Preço = 7,00R$";
+                doceValor = 7.00;
+                isAdd = true;
+                break;
+            case 3:
+                mensagem = "Doce C.Preço = 8,00R$";
+                doceValor = 8.00;
+                isAdd = true;
+                break;
+            default:
+                mensagem = "Doce inválido";
+        }
+    } else {
+        mensagem = "Doce já selecionado!";
     }
 
     document.querySelector('.display h2').innerText = mensagem;
 }
+
+function ValidarSaldo(par) {
+    if (saldo >= doceValor && doceValor > 0) {
+        mensagem = "Retire seu doce!";
+        document.querySelector('.display h2').innerText = mensagem;
+        isBuy = true;
+    }
+}
+
 function enviarRequisicao() {
     // Endpoint da sua requisição
     const url = 'http://localhost:8080/pedidos';
 
+    // Dados a serem enviados
+    const data = { troco: troco }; // Include troco in the data to send
+
     // Configurações da requisição
     const options = {
-        method: 'GET', // Método da requisição (por exemplo, 'GET', 'POST', etc.)
+        method: 'POST', // You might want to use 'POST' method to send data
         headers: {
-            'Content-Type': 'application/json' // Tipo de conteúdo sendo enviado (neste exemplo, JSON)
-        }
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data) // Convert data to JSON string before sending
     };
 
     // Envia a requisição usando fetch()
@@ -37,34 +64,55 @@ function enviarRequisicao() {
             if (!response.ok) {
                 throw new Error('Erro ao enviar requisição');
             }
-            return response.json(); // Parseia a resposta como JSON
+            return response.json();
         })
         .then(data => {
             console.log('Resposta do servidor:', data);
-            // Faça algo com a resposta do servidor aqui
         })
         .catch(error => {
             console.error('Erro:', error);
-            // Trate o erro aqui
         });
 }
 
-
-
 function sairDoces() {
-    alert("Doces saindo...");
+    if (isBuy) {
+        alert("Doces saindo...");
+
+        mensagem = "Selecione um doce";
+
+    } else {
+        mensagem = "Selecione um doce";
+    }
+
+    document.querySelector('.display h2').innerText = mensagem;
 }
 
 function obterTroco() {
-    alert("Troco obtido!");
-    enviarRequisicao();
+    if (isBuy) { // Verifica se um doce foi comprado antes de obter o troco
+        troco = saldo - doceValor; // Calcula o troco
+        alert("Troco: " + troco);
+        enviarRequisicao();
+        isAdd = false;
+        isBuy = false;
+        saldo = 0;
+        doceValor = 0;
+        troco = 0; // Reinicia o troco
+    } else {
+        alert("Selecione um doce!");
+    }
 }
 
 function adicionarMoeda(valor) {
-    saldo += valor;
-    alert("Saldo atual: R$" + saldo.toFixed(2));
+    if (isAdd) {
+        saldo += valor;
+        mensagem = "Saldo: " + saldo.toFixed(2); // Use toFixed to format currency
+    } else {
+        mensagem = "Doce não selecionado!";
+    }
+    document.querySelector('.display h2').innerText = mensagem;
 }
 
 function leverPull() {
     alert("Alavanca puxada!");
+    // Not sure what this function is supposed to do, maybe you need to add some functionality here
 }
